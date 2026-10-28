@@ -252,7 +252,7 @@ begin
  if (select auth.uid()) is null then raise exception 'Debes iniciar sesión';end if;
  select * into t from public.tournaments where id=t_id for update;
  if not found then raise exception 'Torneo inexistente';end if;
- if t.status in ('in_progress','finished','cancelled') or now()>t.registration_deadline then raise exception 'Ya no puedes cancelar desde la web';
+ if t.status in ('in_progress','finished','cancelled') or now()>t.registration_deadline then raise exception 'Ya no puedes cancelar desde la web'; end if;
  update public.registrations set status='cancelled',updated_at=now()
  where tournament_id=t_id and user_id=(select auth.uid()) and status in ('confirmed','waitlisted');
  if not found then raise exception 'No existe inscripción activa';end if;
