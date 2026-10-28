@@ -37,7 +37,7 @@
   $("uid-live-button").disabled=!externalEnabled;
   const {data:{user},error}=await supabase.auth.getUser();
   if(error||!user){
-   notify("Inicia sesión para buscar jugadores. <No se ha realizado ninguna consulta>.".replace(" <No se ha realizado ninguna consulta>",""),"info");
+   notify("Inicia sesión para buscar jugadores.","info");
    $("uid-search-button").disabled=true;$("uid-live-button").disabled=true;
    const message=$("uid-message");
    const link=document.createElement("a");link.href="./acceso.html";link.textContent=" Iniciar sesión";link.className="account-link";
