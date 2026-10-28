@@ -117,3 +117,13 @@ Página: `docs/buscar-jugador.html`. Consulta gratuita para usuarios registrados
 - Activa `freefireLookupEnabled: true` en `docs/auth-config.js` solo después de probar con un UID real que el proveedor tiene cobertura.
 - La función exige inicio de sesión y limita a 10 consultas/hora por usuario (migración 005). Cachea respuestas 24 horas.
 - La consulta externa muestra el nickname **reportado por ese proveedor**, no una prueba de titularidad de la cuenta ni una conexión oficial con Garena.
+
+## Comunidad + WhatsApp (GitHub Pages, sin API de pago)
+- **Página:** `docs/comunidad.html`. Conecta la web con WhatsApp mediante enlaces públicos `https://wa.me/?text=...` del Centro de ayuda oficial de WhatsApp.
+- Compartir enlace de la web, formatos de ejemplo (identificados como *no abiertos*), o tu nickname registrado en DROPZONE.
+- El UID del jugador **solo** se añade si él marca voluntariamente la casilla al compartir su propio perfil. No se exponen contraseñas ni sesiones.
+- Abrir WhatsApp **no** envía un mensaje automáticamente. El usuario selecciona un contacto/grupo y pulsa Enviar.
+- Para activar soporte directo, edita `docs/comms-config.js` y configura `adminNumber: "51XXXXXXXXX"` con un número autorizado de WhatsApp Business, sin el símbolo `+`. Nunca publiques un número privado sin permiso.
+- Para activar el acceso al grupo, pega el enlace de invitación que administres en `groupInviteUrl` (host `chat.whatsapp.com`). Sin enlace configurado, el botón permanece desactivado.
+- **Notificaciones automáticas:** no implementadas. Requieren WhatsApp Business Platform/Cloud API en un servidor seguro, consentimiento del destinatario y, según el tipo de conversación, plantillas aprobadas y cobros.
+- No se gestionan inscripciones, mensajes entrantes o claves de salas por WhatsApp. Eso necesitará un backend y controles de acceso.
