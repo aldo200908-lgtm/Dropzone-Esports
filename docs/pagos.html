@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#0b0b0b">
+ <meta name="referrer" content="strict-origin-when-cross-origin">
+ <meta name="description" content="Conoce las opciones de pago previstas para DROPZONE ESPORTS: Yape, Plin, tarjetas, PagoEfectivo, billeteras y transferencias. Simulación sin cobros reales.">
+ <title>Centro de pagos | DROPZONE ESPORTS</title>
+ <link rel="icon" type="image/svg+xml" href="./arena-shield.svg">
+ <link rel="stylesheet" href="./styles.css">
+ <link rel="stylesheet" href="./payments.css">
+ <script src="./payments-config.js" defer></script>
+ <script src="./payments.js" defer></script>
+</head>
+<body>
+ <div class="topbar"><div class="shell"><span><span class="live-dot"></span> DROPZONE ESPORTS · CENTRO DE PAGOS</span><span class="secondary-note">MODO DEMOSTRACIÓN · SIN COBROS REALES</span></div></div>
+ <header class="site-header"><div class="shell nav-wrap">
+  <a href="./index.html" class="brand" aria-label="DROPZONE ESPORTS — inicio"><img class="brand-mark" src="./arena-shield.svg" alt="" width="45" height="45"><span class="brand-copy"><strong>DROPZONE</strong><span>ESPORTS</span></span></a>
+  <div class="nav-actions"><a href="./index.html#torneos" class="button button-outline payment-nav-link">TORNEOS</a><a href="./perfil.html" class="button button-outline payment-nav-link">MI PERFIL</a></div>
+ </div></header>
+ <main>
+  <section class="payments-hero"><div class="shell payments-hero-grid">
+   <div><div class="eyebrow">UNA SOLA PLATAFORMA · MUCHAS OPCIONES</div>
+    <h1>TÚ ELIGES<br><span class="text-orange">CÓMO PAGAR.</span></h1>
+    <p>Estamos diseñando un proceso de inscripción que admita distintas formas de pago en Perú. Antes de activarlo, puedes conocer y probar cómo se verá desde tu celular.</p>
+    <div class="payments-hero-tags"><span>YAPE Y PLIN</span><span>TARJETAS</span><span>EFECTIVO Y BANCOS</span></div>
+   </div>
+   <aside class="payments-hero-aside"><span>DROPZONE / PAY</span><strong>+6</strong><b>OPCIONES PREVISTAS</b><small>Pago seguro · Gestión de inscripciones · Estado verificable</small></aside>
+  </div></section>
+  <div class="shell payments-warning" role="note"><span aria-hidden="true">!</span><p><strong>SIMULADOR · NO ENVÍES DINERO.</strong> No hay torneos de pago abiertos ni números de cobro habilitados. Los montos, cupos y resultados mostrados son ejemplos. Ningún botón procesa pagos reales.</p></div>
+  <section class="shell payments-main" aria-labelledby="payments-heading">
+   <div class="payments-head"><div><div class="eyebrow">INSCRIPCIÓN · EXPERIENCIA DE PRUEBA</div><h2 id="payments-heading">PREPARA TU <span class="text-orange">PAGO.</span></h2></div><p>Elige un torneo de muestra y una forma de pago. La web te explicará cómo funcionaría y permitirá generar una orden de prueba.</p></div>
+   <div class="payments-layout">
+    <div class="payments-choose">
+     <div class="payments-panel">
+      <div class="payments-panel-title"><span>01</span><h3>ELIGE TU TORNEO</h3><span class="payments-demo-chip">EJEMPLO</span></div>
+      <label class="payments-label" for="demo-tournament">FORMATO COMPETITIVO</label>
+      <select class="payments-select" id="demo-tournament">
+       <option value="solo">DROPZONE CUP · Solo Survivor — S/ 3.00</option>
+       <option value="squad">CLUTCH ARENA · Team Showdown — S/ 2.00</option>
+       <option value="final">THE FINAL ZONE · Champions Night — S/ 5.00</option>
+      </select>
+      <p class="payments-help">Estos son importes de prueba, no tarifas oficiales de inscripción.</p>
+     </div>
+     <div class="payments-panel">
+      <div class="payments-panel-title"><span>02</span><h3>SELECCIONA EL MÉTODO</h3></div>
+      <div class="payments-method-grid" id="payment-methods" role="radiogroup" aria-label="Método de pago de muestra">
+       <button type="button" class="payment-method active" data-method="yape" role="radio" aria-checked="true"><span class="payment-method-icon">Y</span><strong>Yape</strong><small>Billetera digital</small></button>
+       <button type="button" class="payment-method" data-method="plin" role="radio" aria-checked="false"><span class="payment-method-icon">P</span><strong>Plin</strong><small>Billetera digital</small></button>
+       <button type="button" class="payment-method" data-method="card" role="radio" aria-checked="false"><span class="payment-method-icon">▤</span><strong>Tarjeta</strong><small>Crédito o débito</small></button>
+       <button type="button" class="payment-method" data-method="cash" role="radio" aria-checked="false"><span class="payment-method-icon">⌗</span><strong>PagoEfectivo</strong><small>Agentes y banca</small></button>
+       <button type="button" class="payment-method" data-method="bank" role="radio" aria-checked="false"><span class="payment-method-icon">▥</span><strong>Transferencia</strong><small>Cuenta bancaria</small></button>
+       <button type="button" class="payment-method" data-method="wallet" role="radio" aria-checked="false"><span class="payment-method-icon">◉</span><strong>Otras billeteras</strong><small>Según pasarela</small></button>
+      </div>
+     </div>
+     <div class="payments-panel">
+      <div class="payments-panel-title"><span>03</span><h3>ASÍ FUNCIONARÍA</h3></div>
+      <div class="payments-method-detail">
+       <div class="payments-detail-symbol" id="method-symbol">Y</div>
+       <div><strong id="method-title">Pago con Yape</strong><span id="method-subtitle">Billetera digital · Verificación segura</span></div>
+      </div>
+      <p class="payments-method-description" id="method-description"></p>
+      <ol class="payments-steps" id="method-steps"></ol>
+      <p class="payments-provider-note" id="provider-note"></p>
+     </div>
+    </div>
+    <aside class="payments-summary" aria-label="Resumen de simulación">
+     <div class="payments-summary-top"><span>RESUMEN DE INSCRIPCIÓN</span><span class="payments-demo-chip">DEMO</span></div>
+     <h3 id="summary-tournament">SOLO SURVIVOR</h3>
+     <div class="payments-summary-game">FREE FIRE · FORMATO DE MUESTRA</div>
+     <dl class="payments-summary-items">
+      <div><dt>Inscripción ilustrativa</dt><dd id="summary-entry">S/ 3.00</dd></div>
+      <div><dt>Método elegido</dt><dd id="summary-method">Yape</dd></div>
+      <div><dt>Comisiones reales</dt><dd>Por definir</dd></div>
+      <div><dt>Reserva confirmada</dt><dd>NO</dd></div>
+     </dl>
+     <div class="payments-total"><span>TOTAL DE EJEMPLO</span><strong id="summary-total">S/ 3.00</strong></div>
+     <p class="payments-summary-note">Este total es ilustrativo. Una futura orden real se calcularía en el servidor y solo se confirmaría después de verificar el pago con el proveedor.</p>
+     <button type="button" class="button button-primary payments-generate" id="generate-demo-order">CREAR ORDEN DE PRUEBA →</button>
+     <div class="payments-confirmation" id="demo-confirmation" hidden role="status" aria-live="polite">
+      <span>ORDEN DEMOSTRATIVA</span><strong id="demo-order-number"></strong>
+      <p id="demo-order-note">No se ha cobrado ningún importe. No es una inscripción real.</p>
+      <b>ESTADO: SIMULADO · SIN PAGO</b>
+     </div>
+     <div class="payments-secure"><span>♢</span><p>Jamás solicitaremos datos de tu tarjeta directamente en esta página. Las operaciones reales usarán una pasarela certificada y un servidor seguro.</p></div>
+     <a href="./comunidad.html?formato=soporte" class="payments-support">¿Dudas sobre pagos? Prepara una consulta en comunidad ↗</a>
+    </aside>
+   </div>
+  </section>
+  <section class="shell payments-management" aria-labelledby="management-heading">
+   <div class="eyebrow">DISEÑADO TAMBIÉN PARA EL ORGANIZADOR</div>
+   <h2 id="management-heading">CONTROLAR <span class="text-orange">CADA PAGO.</span></h2>
+   <p class="payments-management-lead">Un panel privado permitirá verificar pagos, administrar reembolsos, detectar duplicados y confirmar cupos. Por ahora es un esquema de funcionamiento, no datos de usuarios reales.</p>
+   <div class="payments-workflow">
+    <div><span>01</span><strong>ORDEN PENDIENTE</strong><p>Se registra el torneo, el usuario, el importe y el método.</p></div>
+    <div><span>02</span><strong>PAGO VERIFICADO</strong><p>La pasarela o un administrador autorizado valida el dinero recibido.</p></div>
+    <div><span>03</span><strong>CUPO CONFIRMADO</strong><p>Solo entonces Supabase puede habilitar la inscripción del jugador.</p></div>
+    <div><span>04</span><strong>RESULTADOS Y REEMBOLSOS</strong><p>Se registra el pago de premios o la devolución si corresponde.</p></div>
+   </div>
+   <div class="payments-footnote"><b>IMPORTANTE</b><p>Las inscripciones de pago con premios requieren revisar la normativa, las políticas de Free Fire y la aceptación de la pasarela para torneos competitivos. También hace falta un titular comercial habilitado. Nada de esto está activado públicamente todavía.</p></div>
+  </section>
+ </main>
+ <footer class="footer"><div class="shell footer-bottom" style="margin-top:0"><span>© 2026 DROPZONE ESPORTS · COMPITE. JUEGA. GANA.</span><span>SIMULACIÓN SIN COBROS · PROYECTO INDEPENDIENTE DE GARENA</span></div></footer>
+</body>
+</html>

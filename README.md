@@ -127,3 +127,24 @@ Página: `docs/buscar-jugador.html`. Consulta gratuita para usuarios registrados
 - Para activar el acceso al grupo, pega el enlace de invitación que administres en `groupInviteUrl` (host `chat.whatsapp.com`). Sin enlace configurado, el botón permanece desactivado.
 - **Notificaciones automáticas:** no implementadas. Requieren WhatsApp Business Platform/Cloud API en un servidor seguro, consentimiento del destinatario y, según el tipo de conversación, plantillas aprobadas y cobros.
 - No se gestionan inscripciones, mensajes entrantes o claves de salas por WhatsApp. Eso necesitará un backend y controles de acceso.
+
+## Pagos multimedio — interfaz DEMO y arquitectura futura (sin cobros)
+
+**Interfaz publicada:** `docs/pagos.html` y recursos `docs/payments.js`, `docs/payments.css`, `docs/payments-config.js`.
+- Selector de **seis métodos**: Yape, Plin, tarjetas, PagoEfectivo, transferencia bancaria y otras billeteras.
+- Los ejemplos S/2, S/3 y S/5 son **ilustrativos**: no anuncian precios, torneos reales ni premios.
+- El botón `CREAR ORDEN DE PRUEBA` genera solo un identificador `DEMO-...` en el navegador, sin persistencia, sin procesar cargos, sin reservar plazas.
+- `demoOnly: true` impide confundir la vista con un checkout real. **No** cambiar el flag para cobrar: antes hace falta un backend transaccional probado y aceptación comercial.
+- NUNCA incorporar llaves secretas, números bancarios privados, información sensible de tarjetas o pasarelas con tokens de producción en el frontend.
+
+### Activación real — pendiente de autorización
+
+1. Confirmar elegibilidad del negocio y responsable contractual habilitado, aceptación de torneos de entrada pagada y premios por el procesador (Culqi, Mercado Pago u otro) y condiciones de Free Fire y normativa aplicable en Perú.
+2. Configurar una pasarela multipago: CulqiOnline documenta Visa/Mastercard/Amex/Diners, Yape y PagoEfectivo; Plin y transferencias podrían manejarse por otras integraciones autorizadas. No presumir Plin directo en CulqiOnline. Comparar tarifas mínimas, sobre todo para S/2-S/3.
+3. Crear **orden real del lado servidor** con importe calculado desde `public.tournaments.entry_cents`, usuario autenticado, inscripción/tournament ID, expiración y clave única de idempotencia; no confiar en precios del navegador.
+4. Proteger cupos con transacciones atómicas, definir reservas temporales y liberación si la orden no se paga. La función `reserve_free_tournament` de `001_init.sql` **rechaza torneos pagados**: no se debe reutilizar para acreditarlos.
+5. Verificar pago del lado servidor mediante webhook autenticado + consulta al proveedor, evitando duplicados, monto o moneda alterados, y asociar irrevocablemente una referencia de proveedor a la orden de un solo jugador.
+6. Confirmar inscripción **solamente tras verificación** y notificar en el perfil; casos de pago fallido, expirado, reclamo, reembolso y contracargo deben tener estado independiente.
+7. Proteger la ruta de administración con Auth y RLS/roles, nunca con solo una contraseña en JS; registrar auditoría de aprobaciones manuales y transferencias. Un screenshot no es comprobante suficiente.
+
+**Estado del proyecto:** ninguna cuenta mercantil, webhook o cobro está integrado. El simulador no mueve dinero.
