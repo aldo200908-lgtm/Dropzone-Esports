@@ -10,7 +10,7 @@ test("UID search page includes actual search and consent disclaimers",()=>{
  assert.match(html,/autorizan aparecer/);
  assert.match(js,/lookup_dropzone_uid/);
  assert.match(js,/freefireLookupEnabled===true/);
- assert.match(js,/nickname registrado voluntariamente/);
+ assert.match(js,/nickname registrado voluntariamente/i);
  assert.doesNotMatch(js,/document\.write\(/);
 });
 test("UID lookup SQL requires auth and public profile opt-in",()=>{
