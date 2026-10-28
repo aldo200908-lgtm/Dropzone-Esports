@@ -16,6 +16,8 @@ jobs:
       - run: npm install --no-audit --no-fund
       - run: node --check docs/site.js
       - run: node --check docs/auth.js
+      - run: node --check docs/uid-lookup.js
+      - run: node --test tests/uid-lookup.test.mjs
       - run: node --test tests/static-auth.test.mjs
       - run: npm run lint
       - run: npm run typecheck

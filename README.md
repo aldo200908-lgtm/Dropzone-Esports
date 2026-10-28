@@ -99,3 +99,21 @@ GitHub Pages publica la web estática en:
 https://aldo200908-lgtm.github.io/Dropzone-Esports/
 
 **Importante:** GitHub Pages no ejecuta Next.js Server Actions ni Supabase SSR. La aplicación Next.js completa requiere hosting de servidor compatible (Vercel no es obligatorio: puede ser otra plataforma Next.js o un servidor Node.js).
+
+## Buscar nickname por UID (GitHub Pages + Supabase)
+Página: `docs/buscar-jugador.html`. Consulta gratuita para usuarios registrados que hayan permitido aparecer públicamente.
+
+**Activación del buscador interno:**
+1. Abrir `supabase/migrations/005_uid_lookup.sql`, pegarlo en SQL Editor de DROPZONE y ejecutar Run.
+2. Un jugador debe iniciar sesión, guardar su UID en Mi perfil y marcar *Mostrar mi nickname en rankings públicos*.
+3. Otro jugador conectado podrá introducir ese UID en Buscar jugador para ver el nickname de DROPZONE. Un usuario privado nunca aparecerá.
+4. **El resultado es un nickname autodeclarado de DROPZONE, NO el nickname oficial de Free Fire**.
+
+**Consulta opcional del nickname de Free Fire (proveedor externo no oficial):**
+- Código preparado: `supabase/functions/lookup-freefire/index.ts` (Supabase Edge Function).
+- Debes elegir un proveedor autorizado. El ejemplo usa Volsever, que requiere API key propia y puede tener cargos por consulta. Evalúa sus términos, disponibilidad para Perú/SAC y los de Garena antes de activar.
+- Implementación de ejemplo: crea la Edge Function `lookup-freefire`, pega `index.ts` y despliega con verificación JWT del gateway desactivada (**verify_jwt=false**), pues el código valida tokens de usuario con `auth.getUser()`.
+- Configura la clave únicamente como secreto de servidor `VOLSEVER_API_KEY` en Supabase. **Nunca** la pongas en `docs/auth-config.js` ni en GitHub.
+- Activa `freefireLookupEnabled: true` en `docs/auth-config.js` solo después de probar con un UID real que el proveedor tiene cobertura.
+- La función exige inicio de sesión y limita a 10 consultas/hora por usuario (migración 005). Cachea respuestas 24 horas.
+- La consulta externa muestra el nickname **reportado por ese proveedor**, no una prueba de titularidad de la cuenta ni una conexión oficial con Garena.

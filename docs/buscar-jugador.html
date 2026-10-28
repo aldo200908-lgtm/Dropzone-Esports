@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#0b0b0b">
+ <meta name="referrer" content="strict-origin-when-cross-origin">
+ <meta name="description" content="Busca jugadores de DROPZONE ESPORTS por su UID de Free Fire.">
+ <title>Buscar jugador por UID | DROPZONE ESPORTS</title>
+ <link rel="icon" type="image/svg+xml" href="./arena-shield.svg">
+ <link rel="stylesheet" href="./styles.css">
+ <link rel="stylesheet" href="./auth.css">
+ <link rel="stylesheet" href="./uid-lookup.css">
+ <script src="./auth-config.js" defer></script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+ <script src="./uid-lookup.js" defer></script>
+</head>
+<body>
+ <div class="topbar"><div class="shell"><span><span class="live-dot"></span> DROPZONE ESPORTS · IDENTIDAD DE JUGADOR</span><span class="secondary-note">BUSCADOR DE UID</span></div></div>
+ <header class="site-header"><div class="shell nav-wrap">
+  <a href="./index.html" class="brand" aria-label="Ir al inicio"><img class="brand-mark" src="./arena-shield.svg" alt="" width="45" height="45"><span class="brand-copy"><strong>DROPZONE</strong><span>ESPORTS</span></span></a>
+  <div class="nav-actions"><a class="button button-outline nav-account" href="./perfil.html">MI PERFIL</a><a class="button button-outline nav-account" href="./index.html">← INICIO</a></div>
+ </div></header>
+ <main class="account-hero" style="min-height:calc(100vh - 180px)">
+  <div class="account-shell">
+   <div class="uid-layout">
+    <section>
+     <p class="account-eyebrow">IDENTIDAD COMPETITIVA</p>
+     <h1 class="account-heading">BUSCA UN<br><strong>JUGADOR.</strong></h1>
+     <p class="account-description">Escribe el UID de Free Fire para encontrar su nickname en la comunidad DROPZONE. Solo se muestran los perfiles que autorizan aparecer en búsquedas públicas.</p>
+     <div class="uid-explainer">
+      <div><span class="uid-step-number">01</span><span>Introduce un UID de 5 a 15 dígitos.</span></div>
+      <div><span class="uid-step-number">02</span><span>Buscaré coincidencias entre perfiles públicos de DROPZONE.</span></div>
+      <div><span class="uid-step-number">03</span><span>Si hay un resultado, verás el nickname registrado por ese jugador.</span></div>
+     </div>
+    </section>
+    <section class="account-card" aria-label="Formulario para buscar por UID">
+     <div class="account-card-head"><h2>BUSCADOR DE UID</h2><span class="beta-pill">BETA</span></div>
+     <div class="uid-source-pill">✓ PERFILES PÚBLICOS DE DROPZONE</div>
+     <form id="uid-search-form" class="account-form" autocomplete="off">
+      <label for="uid-input" class="form-label">UID DEL JUGADOR</label>
+      <input id="uid-input" class="form-field" type="text" name="uid" inputmode="numeric" pattern="[0-9]{5,15}" minlength="5" maxlength="15" placeholder="Ejemplo: 1234567890" required aria-describedby="uid-help">
+      <p id="uid-help" class="account-small">Encontrarás tu UID en el perfil de Free Fire. Nunca ingreses tu contraseña.</p>
+      <button id="uid-search-button" type="submit" class="button button-primary">BUSCAR NICKNAME →</button>
+     </form>
+     <div id="uid-message" class="account-alert" role="status" aria-live="polite" hidden></div>
+     <div id="uid-result" class="uid-result" aria-live="polite" hidden>
+      <div class="uid-result-badge" id="uid-result-source">DROPZONE · PERFIL PÚBLICO</div>
+      <div class="uid-result-name" id="uid-result-name"></div>
+      <dl class="uid-details">
+       <div><dt>UID</dt><dd id="uid-result-uid"></dd></div>
+       <div id="uid-result-region-row" hidden><dt>Región</dt><dd id="uid-result-region"></dd></div>
+       <div id="uid-result-level-row" hidden><dt>Nivel</dt><dd id="uid-result-level"></dd></div>
+      </dl>
+      <p class="account-small" id="uid-result-warning">Nickname autodeclarado por el jugador: no verificado con Garena.</p>
+     </div>
+     <div id="uid-no-results" class="uid-empty" hidden>
+      <span aria-hidden="true">⌕</span><strong>NO HAY COINCIDENCIAS</strong><p>El UID no está registrado o el jugador ha elegido mantener su perfil privado.</p>
+     </div>
+     <div class="uid-external"><div class="uid-external-title">CONSULTA DIRECTA DE FREE FIRE</div><p>Preparada para un proveedor externo autorizado. Todavía no está habilitada y no es una integración oficial de Garena.</p><button type="button" id="uid-live-button" class="button button-outline" disabled>CONSULTAR NICKNAME DEL JUEGO</button></div>
+    </section>
+   </div>
+   <div class="uid-fineprint">DROPZONE ESPORTS es independiente de Garena. Un nickname mostrado desde nuestra comunidad no prueba que la persona sea propietaria de la cuenta de Free Fire. Para verificar el nickname actual del juego necesitamos una fuente externa disponible.</div>
+  </div>
+ </main>
+ <footer class="footer"><div class="shell footer-bottom" style="margin-top:0"><span>© 2026 DROPZONE ESPORTS · COMPITE. JUEGA. GANA.</span><span>PERFILES VOLUNTARIAMENTE PÚBLICOS · SIN PAGOS</span></div></footer>
+</body>
+</html>
