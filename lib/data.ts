@@ -15,10 +15,10 @@ export async function tournament(id:string):Promise<Tournament|null> {
  const {data}=await db.from("tournament_cards").select("*").eq("id",id).maybeSingle();
  return data as Tournament|null;
 }
-export async function leaderboard():Promise<Leader[]>{
+export async function leaderboard(period:"all"|"week"|"month"="all"):Promise<Leader[]>{
  const db=await serverSupabase();
  if(!db)return [];
- const {data,error}=await db.rpc("public_leaderboard",{max_rows:20});
+ const {data,error}=await db.rpc("public_leaderboard_range",{range_name:period,max_rows:50});
  if(error){console.error("leaderboard",error.message);return [];}
  return (data??[]) as Leader[];
 }

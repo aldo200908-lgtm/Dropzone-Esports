@@ -10,3 +10,11 @@ export function marginCents(players:number,priceCents:number,prizeCents:number,c
 }
 export function isConfigured():boolean {return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);}
 export const brand={name:"DROPZONE ESPORTS",tagline:"COMPITE. JUEGA. GANA."};
+
+/** Treat datetime-local inputs as Peru wall time (UTC-05, no DST). */
+export function peruLocalToISO(value:string):string{
+ if(!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value))throw new Error("Fecha inválida");
+ const date=new Date(value+":00-05:00");
+ if(Number.isNaN(date.getTime()))throw new Error("Fecha inválida");
+ return date.toISOString();
+}

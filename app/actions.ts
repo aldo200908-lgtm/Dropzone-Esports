@@ -87,3 +87,15 @@ export async function publishResult(form:FormData){
  await db.from("audit_logs").insert({actor_id:user.id,action:"publish_result",entity_id:tournamentId.data,details:{user_id:userId.data,placement:rank.data,kills:kills.data}});
  revalidatePath("/rankings");revalidatePath("/admin");redirect("/admin?notice=Resultado+verificado");
 }
+
+export async function resolveDispute(form:FormData){
+ const {db,user}=await requireAdmin();
+ const id=z.uuid().safeParse(form.get("dispute_id"));
+ const status=z.enum(["resolved","rejected"]).safeParse(form.get("status"));
+ const resolution=z.string().min(5).max(1000).safeParse(form.get("resolution"));
+ if(!id.success||!status.success||!resolution.success)fail("/admin","Resolución inválida");
+ const {error}=await db.from("disputes").update({status:status.data,resolution:resolution.data}).eq("id",id.data);
+ if(error)fail("/admin","No se pudo actualizar la reclamación");
+ await db.from("audit_logs").insert({actor_id:user.id,action:"resolve_dispute",entity_id:id.data,details:{status:status.data}});
+ revalidatePath("/admin");redirect("/admin?notice=Reclamación+actualizada");
+}
