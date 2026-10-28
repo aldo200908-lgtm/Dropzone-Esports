@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" role="img" aria-labelledby="title desc"><title id="title">Emblema conceptual DROPZONE ESPORTS</title><desc id="desc">Escudo angular original naranja con un rayo, rodeado de anillos y detalles de competición.</desc>
+<defs>
+ <radialGradient id="halo"><stop stop-color="#ff7a00" stop-opacity=".19"/><stop offset=".57" stop-color="#ff7a00" stop-opacity=".055"/><stop offset="1" stop-color="#ff7a00" stop-opacity="0"/></radialGradient>
+ <linearGradient id="shield" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffb547"/><stop offset=".28" stop-color="#ff7a00"/><stop offset=".7" stop-color="#de4800"/><stop offset="1" stop-color="#ff9f17"/></linearGradient>
+ <linearGradient id="inner" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#303034"/><stop offset=".5" stop-color="#0b0b0d"/><stop offset="1" stop-color="#2d1c14"/></linearGradient>
+ <linearGradient id="flame" x1="0" x2="1"><stop stop-color="#ffd000"/><stop offset="1" stop-color="#ff7a00"/></linearGradient>
+ <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<circle cx="360" cy="354" r="335" fill="url(#halo)"/>
+<circle cx="360" cy="354" r="281" fill="none" stroke="#ff7a00" stroke-opacity=".14" stroke-width="1.5"/>
+<circle cx="360" cy="354" r="248" fill="none" stroke="#ff7a00" stroke-opacity=".28" stroke-width="2" stroke-dasharray="7 16"/>
+<circle cx="360" cy="354" r="221" fill="none" stroke="#c6a88d" stroke-opacity=".14" stroke-width="1"/>
+<circle cx="360" cy="354" r="198" fill="none" stroke="#ff7a00" stroke-opacity=".15" stroke-width="24" stroke-dasharray="11 52"/>
+<g stroke="#ff7a00" stroke-width="3" stroke-opacity=".5"><path d="M358 37v47M358 622v54M43 354h48M629 354h48"/><path d="M145 137l34 34M540 535l34 34M573 138l-33 33M180 536l-34 34"/></g>
+<g fill="#ff7a00"><path d="M352 64h16v16h-16zM352 632h16v16h-16z" opacity=".8"/><path d="M50 349h12v12H50zM658 349h12v12h-12z" opacity=".8"/></g>
+<path d="M360 127 555 209 533 467 360 593 188 467 165 209z" fill="#ff7a00" opacity=".19" filter="url(#shadow)"/>
+<path d="M360 113 564 205 540 477 360 610 180 477 156 205z" fill="url(#shield)"/>
+<path d="M360 139 536 220 515 462 360 577 205 462 184 220z" fill="#0a0a0b"/>
+<path d="M360 156 519 228 500 450 360 555 220 450 201 228z" fill="url(#inner)" stroke="#ffbb52" stroke-opacity=".36" stroke-width="2"/>
+<path d="M232 240 360 182 489 240 484 267 360 211 237 268z" fill="#ff7a00" opacity=".7"/>
+<path d="M259 313h63l-8 44h51l56-98h50L394 409h-76l14-46h-67z" fill="url(#flame)"/>
+<path d="M292 417h137l-21 32h-96z" fill="#fff" opacity=".95"/>
+<path d="M264 472h192l-22 18H286z" fill="#ff7a00"/>
+<path d="M346 518h28l-14 12z" fill="#ffd000"/>
+<g fill="#ffb360" opacity=".8"><path d="m98 291 49-20 4 14-49 20zM573 275l49 20-4 14-49-20zM102 423l48 20-5 13-49-20zM572 444l48-20 6 13-49 20z"/></g>
+<g stroke="#e5e5e5" stroke-opacity=".35" fill="none" stroke-width="1.5"><path d="M290 72h138M290 649h138"/><path d="M92 300v108M628 300v108"/></g>
+<g font-family="Arial,sans-serif" font-size="14" letter-spacing="5" fill="#cfc3bb"><text x="360" y="99" text-anchor="middle">DROPZONE</text><text x="360" y="677" text-anchor="middle">ESPORTS</text></g>
+</svg>
