@@ -62,7 +62,7 @@ Las páginas `docs/acceso.html` y `docs/perfil.html` funcionan con **Supabase Au
 1. Crea un proyecto en [Supabase](https://supabase.com/dashboard), una vez que puedas gestionar legalmente la plataforma.
 2. En el **SQL Editor** ejecuta los scripts de la carpeta `supabase/migrations` en orden: `001_init.sql`, `002_leaderboard_periods.sql`, `003_reconciliation.sql` y `004_static_auth.sql`.
 3. Abre en GitHub `docs/auth-config.js` y rellena:
-   - `url`: la **Project URL** (ejemplo ilustrativo: `https://TU-PROYECTO.supabase.co`)
+   - `url`: la **Project URL** (configurada para el proyecto DROPZONE ESPORTS: `https://qriscpebpkmmermujrmu.supabase.co`)
    - `publishableKey`: la clave **publishable** `sb_publishable_...` o clave pública **anon** (no la `service_role` ni una clave secreta).
 4. En **Authentication → URL Configuration**:
    - **Site URL**: `https://aldo200908-lgtm.github.io/Dropzone-Esports/`
