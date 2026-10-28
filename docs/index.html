@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#0b0b0d"/>
+<meta name="description" content="DROPZONE ESPORTS. Una nueva arena para la comunidad competitiva. Torneos, rankings y comunidad. Próximamente."/>
+<title>DROPZONE ESPORTS — Compite. Juega. Gana.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b0b0d;--card:#17171b;--line:#303039;--orange:#ff7a00;--gold:#ffd000;--muted:#a5a5ad;--white:#f3f3f4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Montserrat,Arial,sans-serif}a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}h1,h2,h3{font-family:Anton,Impact,sans-serif;font-weight:400}button{font:inherit;cursor:pointer}
+.container{width:min(1160px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:#0b0b0df0;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px}
+.mark{background:var(--orange);color:#0c0c0e;width:43px;height:43px;display:grid;place-items:center;clip-path:polygon(23% 0,100% 0,100% 76%,77% 100%,0 100%,0 24%);font-size:19px;font-weight:900;letter-spacing:-2px}
+.wordmark{display:flex;flex-direction:column;line-height:.93}
+.wordmark strong{font-family:Anton,Impact,sans-serif;font-size:23px;letter-spacing:.3px;font-weight:400}
+.wordmark span{font-size:10px;letter-spacing:5px;font-weight:900;color:var(--orange);margin-top:5px}
+nav{display:flex;gap:28px;align-items:center}nav a{font-size:12px;font-weight:800;color:#c5c5cc}nav a:hover{color:var(--orange)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:9px;padding:13px 19px;min-height:45px;font-size:12px;font-weight:900;letter-spacing:.02em}
+.btn.orange{background:var(--orange);color:#090909}.btn.orange:hover{background:#ffa03f}.btn.outline{border:1px solid #595960;background:#17171c}.btn.outline:hover{border-color:var(--orange)}
+.burger{display:none;background:none;color:white;border:0;font-size:25px}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 72% 40%,#a64b192b,transparent 48%);border-bottom:1px solid #292931}
+.hero:before,.patterns:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:50px 50px}
+.hero-inner{min-height:580px;display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center;padding:85px 0 90px}
+.kicker{color:var(--orange);font-weight:900;letter-spacing:.23em;font-size:11px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #ff7a006a;background:#ff7a001b;border-radius:7px;color:#ffa447;padding:7px 12px;font-size:10px;font-weight:900;letter-spacing:.1em}
+.hero h1{font-size:clamp(66px,8.3vw,113px);line-height:.91;margin:22px 0 24px;letter-spacing:-.025em}
+.orange-text{color:var(--orange)}.gold-text{color:var(--gold)}
+.hero p{max-width:570px;line-height:1.8;color:#bdbdc5;font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.footnote{margin-top:24px!important;font-size:11px!important;color:#96969e!important}
+.art{height:420px;max-width:410px;width:100%;justify-self:end;background:linear-gradient(150deg,#4b2511,#171419 54%,#08080b);clip-path:polygon(13% 0,100% 0,100% 83%,85% 100%,0 100%,0 12%);border:1px solid #ff7a0050;position:relative;overflow:hidden;box-shadow:0 0 100px #ff7a001a}
+.art:before{content:"";position:absolute;inset:-80px;background:repeating-linear-gradient(130deg,transparent 0 22px,#ff7a0010 22px 23px);transform:rotate(-7deg)}
+.art:after{content:"DZ";position:absolute;right:-10px;top:10px;color:#ff7a001f;font-size:220px;font-weight:900;line-height:1}
+.art-meta{position:absolute;left:32px;bottom:35px;z-index:2}
+.art-meta h2{font-size:64px;line-height:1.06;margin-top:10px}
+.art-meta .bar{width:90px;height:4px;background:var(--orange);margin-top:18px}
+.section{padding:79px 0}.section-title{font-size:clamp(40px,5vw,59px);line-height:1.03;margin-top:10px}.section-sub{color:var(--muted);font-size:13px;line-height:1.8;margin-top:17px;max-width:700px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}
+.feature,.card{border:1px solid #33333b;background:linear-gradient(135deg,#1e1e23,#121216);border-radius:16px}
+.feature{padding:24px;display:flex;gap:17px;align-items:flex-start}.feature-icon{background:#ff7a001c;color:#ff8d27;border-radius:10px;width:45px;height:45px;display:grid;place-items:center;font-size:23px;flex-shrink:0}
+.feature h3{font-size:22px;line-height:1.15}.feature p{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:33px}
+.card{overflow:hidden}.card-art{height:146px;position:relative;background:radial-gradient(ellipse at top right,#ff7a0030,transparent 55%),linear-gradient(135deg,#352014,#0e0e12);display:flex;align-items:flex-end;padding:17px}
+.card-art:after{content:"⚔";position:absolute;right:22px;top:12px;color:#ff7a0058;font-size:75px}
+.card-art h3{font-size:31px}.card-body{padding:23px}.card-body h3{font-size:27px;margin:6px 0 14px}
+.meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #37373e;padding:12px 0;color:#d9d9df;font-size:12px;gap:12px}
+.meta span:first-child{color:#a7a7ae}.prize{color:var(--gold);font-family:Anton,Impact,sans-serif;font-size:29px}
+.card .tag{background:#ff7a0022;border:1px solid #ff7a006b;color:#ff9f43;border-radius:5px;padding:5px 8px;font-size:10px;font-weight:900;letter-spacing:.08em}
+.card .btn{width:100%;margin-top:10px}
+.notice{border:1px solid #745019;background:#ffd0000c;border-radius:12px;color:#dbc093;font-size:12px;line-height:1.7;padding:15px 18px;margin-top:28px}
+.dark-band{background:#151519;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.step{display:flex;gap:20px;margin-top:25px}.step .num{font:35px Anton,Impact,sans-serif;color:var(--orange);min-width:48px}.step strong{font-size:13px}.step p{color:var(--muted);font-size:12px;line-height:1.7;margin-top:6px}
+.leaderboard{padding:26px}.leaderboard h3{font-size:28px}.leaderboard .empty{border-top:1px solid #3c3c43;margin-top:25px;padding:38px 0 14px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
+.community{border:1px solid #454044;border-radius:18px;padding:40px;background:radial-gradient(ellipse at 85% 25%,#ff7a0029,transparent 52%),#17171b;display:flex;justify-content:space-between;align-items:center;gap:28px}
+.community h2{font-size:clamp(37px,5vw,57px);margin:10px 0}.community p{color:var(--muted);font-size:12px;line-height:1.8}
+footer{border-top:1px solid #29292e;padding:45px 0;color:#9696a0;font-size:11px}
+footer .row{display:flex;align-items:center;justify-content:space-between;gap:20px}footer .logo{color:white}
+.small{font-size:10px;color:#a6a6af;line-height:1.6}
+@media(max-width:850px){.hero-inner{grid-template-columns:1fr}.art{justify-self:center;width:min(100%,370px);height:310px}.art-meta h2{font-size:52px}.hero h1{font-size:clamp(59px,12vw,93px)}.features{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.community{flex-direction:column;align-items:start}}
+@media(max-width:620px){.nav{height:66px}.burger{display:block}nav{display:none;position:absolute;top:65px;left:0;right:0;padding:22px;background:#111115;border-bottom:1px solid #38383e;flex-direction:column;align-items:start}nav.open{display:flex}.hero-inner{padding:55px 0 58px}.art{height:275px}.art-meta h2{font-size:44px}.section{padding:62px 0}.cards{grid-template-columns:1fr}.community{padding:27px}.features{margin-top:24px}footer .row{align-items:start;flex-direction:column}.hero h1{font-size:clamp(52px,14vw,77px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="logo" href="#inicio" aria-label="Dropzone Esports inicio"><span class="mark">DZ</span><span class="wordmark"><strong>DROPZONE</strong><span>ESPORTS</span></span></a>
+<button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" id="menu-toggle">☰</button>
+<nav id="menu"><a href="#torneos">TORNEOS</a><a href="#funciona">CÓMO FUNCIONA</a><a href="#ranking">RANKINGS</a><a href="#comunidad">COMUNIDAD</a></nav>
+<a class="btn orange" href="#torneos" style="padding:11px 15px">EXPLORAR ↗</a>
+</div></header>
+<main>
+<section class="hero" id="inicio"><div class="container hero-inner">
+<div><span class="pill">⚡ UNA NUEVA ARENA ESTÁ POR NACER</span><h1>COMPITE EN<br/><span class="orange-text">LA ZONA</span><br/>DE LOS MEJORES.</h1><p>Conoce DROPZONE ESPORTS: una comunidad para los que viven la competencia. Torneos, tablas de clasificación y una experiencia pensada para jugadores que quieren destacar.</p>
+<div class="actions"><a class="btn orange" href="#torneos">EXPLORAR TORNEOS ↗</a><a class="btn outline" href="#comunidad">CONOCE LA COMUNIDAD →</a></div>
+<p class="footnote">🛡 Vista previa oficial · Plataforma en desarrollo · Sin pagos ni inscripciones activas</p></div>
+<div class="art" aria-label="Arte abstracto de esports en negro y naranja"><div class="art-meta"><span class="kicker">DROPZONE / PRETEMPORADA</span><h2>NO LIMITS.<br/><span class="orange-text">JUST SKILL.</span></h2><div class="bar"></div></div></div>
+</div></section>
+<section class="container section" style="padding-top:42px;padding-bottom:20px"><div class="features">
+<div class="feature"><div class="feature-icon">🏆</div><div><h3>TORNEOS COMPETITIVOS</h3><p>Una experiencia organizada, con reglamentos públicos y resultados revisados.</p></div></div>
+<div class="feature"><div class="feature-icon">⚡</div><div><h3>COMUNIDAD DE JUGADORES</h3><p>Conecta con personas que comparten tus ganas de competir.</p></div></div>
+<div class="feature"><div class="feature-icon">🛡</div><div><h3>TRANSPARENCIA PRIMERO</h3><p>Inscripciones claras, control de salas y reglas visibles antes de jugar.</p></div></div>
+</div></section>
+<section class="container section" id="torneos"><div class="kicker">ENTRA EN ACCIÓN</div><h2 class="section-title">PRÓXIMOS <span class="orange-text">TORNEOS</span></h2><p class="section-sub">Estamos preparando la primera temporada. Los siguientes son ejemplos del formato visual de nuestros campeonatos, no eventos abiertos.</p><div class="cards">
+<div class="card"><div class="card-art"><div><span class="tag">EJEMPLO · NO ABIERTO</span><h3>DROPZONE CUP</h3></div></div><div class="card-body"><div class="kicker">BATTLE ROYALE</div><h3>INDIVIDUAL #001</h3><div class="meta"><span>Capacidad prevista</span><b>Hasta 50</b></div><div class="meta"><span>Mínimo previsto</span><b>35 jugadores</b></div><div class="meta"><span>Premio</span><span class="prize">POR ANUNCIAR</span></div><a class="btn outline" href="#comunidad">PRÓXIMAMENTE</a></div></div>
+<div class="card"><div class="card-art"><div><span class="tag">EJEMPLO · NO ABIERTO</span><h3>CLUTCH NIGHT</h3></div></div><div class="card-body"><div class="kicker">FREE FIRE</div><h3>NOCHE COMPETITIVA</h3><div class="meta"><span>Formato</span><b>Por definir</b></div><div class="meta"><span>Fecha</span><b>Por anunciar</b></div><div class="meta"><span>Premio</span><span class="prize">POR ANUNCIAR</span></div><a class="btn outline" href="#comunidad">PRÓXIMAMENTE</a></div></div>
+<div class="card"><div class="card-art"><div><span class="tag">EJEMPLO · NO ABIERTO</span><h3>WEEKEND FINALS</h3></div></div><div class="card-body"><div class="kicker">CAMPEONATO</div><h3>FINAL DE TEMPORADA</h3><div class="meta"><span>Clasificados</span><b>Por definir</b></div><div class="meta"><span>Fecha</span><b>Por anunciar</b></div><div class="meta"><span>Premio</span><span class="prize">POR ANUNCIAR</span></div><a class="btn outline" href="#comunidad">PRÓXIMAMENTE</a></div></div>
+</div><div class="notice">Esta es una vista pública de presentación creada con GitHub Pages. La versión con cuentas, reservas y administración está en desarrollo y requiere infraestructura de servidor y base de datos. No se reciben pagos ni inscripciones desde esta página.</div></section>
+<section class="dark-band section" id="funciona"><div class="container steps">
+<div><div class="kicker">RUTA A LA VICTORIA</div><h2 class="section-title">TU HISTORIA <span class="orange-text">COMIENZA AQUÍ</span></h2>
+<div class="step"><span class="num">01</span><div><strong>CREA TU PERFIL</strong><p>Cuando lancemos la plataforma, registra tu nickname y UID del juego sin entregar tu contraseña.</p></div></div>
+<div class="step"><span class="num">02</span><div><strong>ELIGE TU TORNEO</strong><p>Consulta reglas, plazas y condiciones del evento antes de reservar.</p></div></div>
+<div class="step"><span class="num">03</span><div><strong>COMPITE Y ASCIENDE</strong><p>Participa en los eventos habilitados y revisa los resultados verificados.</p></div></div>
+</div><div class="card leaderboard" id="ranking"><h3>🏆 TABLA DE LÍDERES</h3><div class="empty"><div style="font-size:46px;margin-bottom:15px">♛</div><strong style="color:#f3f3f4;font-size:17px">EL PODIO TE ESPERA</strong><br/>El ranking oficial aparecerá después del primer torneo verificado.<br/>No mostramos jugadores ni resultados inventados.</div></div>
+</div></section>
+<section class="container section" id="comunidad"><div class="community"><div><div class="kicker">NO JUEGUES SOLO</div><h2>ÚNETE A LA <span class="orange-text">COMUNIDAD</span></h2><p>Estamos preparando nuestros canales oficiales. Publicaremos aquí los enlaces de acceso una vez estén verificados.</p></div><a class="btn orange" href="https://github.com/aldo200908-lgtm/Dropzone-Esports" target="_blank" rel="noopener noreferrer">VER EL PROYECTO ↗</a></div></section>
+</main>
+<footer><div class="container row"><div class="logo"><span class="mark">DZ</span><span class="wordmark"><strong>DROPZONE</strong><span>ESPORTS</span></span></div><div class="small">© 2026 DROPZONE ESPORTS · Compite. Juega. Gana.<br/>Proyecto independiente, no afiliado ni respaldado por Garena. Web de pre-lanzamiento.</div></div></footer>
+<script>
+const menu=document.querySelector('#menu'),toggle=document.querySelector('#menu-toggle');
+toggle?.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
+menu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle?.setAttribute('aria-expanded','false');}));
+</script>
+</body>
+</html>

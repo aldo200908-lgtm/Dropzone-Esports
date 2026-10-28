@@ -51,3 +51,13 @@ Sin configuración de Supabase, la web muestra una **vista previa claramente mar
 - Para automatizarla, programa un GET a `/api/cron/reconcile` desde un proveedor de cron autorizado, incluyendo `Authorization: Bearer <CRON_SECRET>`.
 - Define `CRON_SECRET` y `SUPABASE_SERVICE_ROLE_KEY` solo en variables privadas del servidor (no prefijo NEXT_PUBLIC).
 - Frecuencia sugerida: cada 5 minutos, si el proveedor contratado lo permite. Mientras no haya un programador conectado, el cierre es **manual**.
+
+## Vista pública sin Vercel (GitHub Pages)
+Se incluye `docs/index.html`, una página de presentación estática, responsive y sin funciones de pago ni inscripción.
+
+Para publicarla por primera vez, en GitHub abre **Settings → Pages → Build and deployment**, elige **Deploy from a branch** → rama **main** → carpeta **/docs** → **Save**.
+
+GitHub Pages publica la web estática en:
+https://aldo200908-lgtm.github.io/Dropzone-Esports/
+
+**Importante:** GitHub Pages no ejecuta Next.js Server Actions ni Supabase SSR. La aplicación Next.js completa requiere hosting de servidor compatible (Vercel no es obligatorio: puede ser otra plataforma Next.js o un servidor Node.js).
