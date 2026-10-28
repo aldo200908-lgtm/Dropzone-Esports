@@ -17,6 +17,9 @@ jobs:
       - run: node --check docs/site.js
       - run: node --check docs/auth.js
       - run: node --check docs/uid-lookup.js
+      - run: node --check docs/whatsapp.js
+      - run: node --check docs/comms-config.js
+      - run: node --test tests/whatsapp.test.mjs
       - run: node --test tests/uid-lookup.test.mjs
       - run: node --test tests/static-auth.test.mjs
       - run: npm run lint

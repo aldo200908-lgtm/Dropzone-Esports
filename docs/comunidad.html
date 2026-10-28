@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#0b0b0b">
+ <meta name="description" content="Conecta con jugadores de DROPZONE ESPORTS, comparte invitaciones de Free Fire en WhatsApp y prepara mensajes para la comunidad.">
+ <meta name="referrer" content="strict-origin-when-cross-origin">
+ <title>Comunidad y WhatsApp | DROPZONE ESPORTS</title>
+ <link rel="icon" type="image/svg+xml" href="./arena-shield.svg">
+ <link rel="stylesheet" href="./styles.css">
+ <link rel="stylesheet" href="./auth.css">
+ <link rel="stylesheet" href="./whatsapp.css">
+ <script src="./auth-config.js" defer></script>
+ <script src="./comms-config.js" defer></script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+ <script src="./whatsapp.js" defer></script>
+</head>
+<body class="comms-page">
+ <div class="topbar"><div class="shell"><span><span class="live-dot"></span> DROPZONE ESPORTS · COMUNIDAD</span><span class="secondary-note">COMPARTIR · INVITAR · CONECTAR</span></div></div>
+ <header class="site-header"><div class="shell nav-wrap">
+  <a href="./index.html" class="brand" aria-label="Volver a DROPZONE ESPORTS"><img src="./arena-shield.svg" class="brand-mark" alt="" width="45" height="45"><span class="brand-copy"><strong>DROPZONE</strong><span>ESPORTS</span></span></a>
+  <div class="nav-actions"><a href="./index.html#torneos" class="button button-outline comms-header-link">TORNEOS</a><a href="./perfil.html" class="button button-outline comms-header-link">MI PERFIL</a></div>
+ </div></header>
+ <main>
+  <section class="comms-hero">
+   <div class="shell comms-hero-grid">
+    <div>
+     <div class="eyebrow">LA ARENA EMPIEZA CON TU EQUIPO</div>
+     <h1>COMPITE<br><span class="text-orange">EN COMUNIDAD.</span></h1>
+     <p>Invita a tus amigos a conocer DROPZONE ESPORTS desde WhatsApp. La web reúne los perfiles y organizará los torneos; WhatsApp nos ayudará a mantener la comunicación.</p>
+     <div class="comms-tags"><span>● 100% GRATIS PARA COMPARTIR</span><span>● SIN ENVIAR MENSAJES AUTOMÁTICOS</span></div>
+    </div>
+    <div class="comms-hero-mark" aria-hidden="true"><span>DROPZONE</span><b>×</b><strong>WHATSAPP</strong><small>WEB + COMUNIDAD</small></div>
+   </div>
+  </section>
+  <section class="shell comms-main" aria-labelledby="invite-heading">
+   <div class="comms-section-top"><div><div class="eyebrow">CENTRO DE COMUNICACIÓN</div><h2 id="invite-heading">PREPARA TU <span class="text-orange">MENSAJE.</span></h2></div><p>Elige qué compartir, revisa el texto y abre WhatsApp. Nada se envía sin tu confirmación.</p></div>
+   <div class="comms-editor-grid">
+    <div class="comms-panel">
+     <div class="comms-panel-header"><span class="comms-number">01 / CONFIGURAR</span><span class="comms-panel-label">MENSAJE LISTO PARA COMPARTIR</span></div>
+     <label for="message-type" class="form-label">¿QUÉ QUIERES HACER?</label>
+     <select class="form-field comms-select" id="message-type">
+      <option value="invitacion">Invitar a un amigo</option>
+      <option value="solo">Compartir formato individual</option>
+      <option value="escuadras">Compartir formato de escuadras</option>
+      <option value="final">Compartir formato de final</option>
+      <option value="perfil">Compartir mi perfil competitivo</option>
+      <option value="soporte">Consultar a DROPZONE</option>
+     </select>
+     <div class="comms-profile-box" id="profile-options" hidden>
+      <div class="comms-profile-info"><span>PERFIL PERSONAL</span><strong id="profile-info-name">Cargando sesión...</strong><p id="profile-info-hint">Solo se incluirán los datos que decidas compartir.</p></div>
+      <label class="checkbox-row"><input type="checkbox" id="include-uid"><span>Incluir mi UID de Free Fire en el mensaje</span></label>
+      <a href="./acceso.html" id="comms-login-link" class="account-link" hidden>Inicia sesión para compartir tu perfil</a>
+     </div>
+     <label for="message-preview" class="form-label comms-preview-label">VISTA PREVIA</label>
+     <textarea id="message-preview" class="form-field comms-preview" readonly rows="9" aria-describedby="comms-preview-note"></textarea>
+     <p class="comms-info" id="comms-preview-note">El texto contiene un enlace a nuestra web, no enlaces de registro de un torneo abierto.</p>
+     <div class="comms-buttons">
+      <a id="whatsapp-share" class="button button-primary" href="https://wa.me/?text=DROPZONE%20ESPORTS" target="_blank" rel="noopener noreferrer">ABRIR WHATSAPP ↗</a>
+      <button id="copy-message" class="button button-outline" type="button">COPIAR MENSAJE</button>
+     </div>
+     <p id="comms-status" role="status" aria-live="polite" class="comms-status"></p>
+     <p class="comms-legal">Se abrirá WhatsApp para que elijas un contacto o grupo y pulses enviar. DROPZONE no puede leer tus conversaciones.</p>
+    </div>
+    <aside class="comms-aside">
+     <div class="comms-feature-card"><span class="comms-feature-icon">01</span><div><strong>WEB → WHATSAPP</strong><p>Invita a otros jugadores usando mensajes y enlaces preparados desde DROPZONE.</p></div></div>
+     <div class="comms-feature-card"><span class="comms-feature-icon">02</span><div><strong>WHATSAPP → WEB</strong><p>Quien reciba la invitación podrá entrar al sitio y crear su propia cuenta.</p></div></div>
+     <div class="comms-feature-card"><span class="comms-feature-icon">03</span><div><strong>REGISTROS SEGUROS</strong><p>Los cupos y las inscripciones futuras se guardarán en la web con Supabase, no mediante mensajes.</p></div></div>
+     <div class="comms-aside-note"><b>ETAPA BETA</b><p>Compartir funciona sin números de contacto. Las inscripciones y las notificaciones automáticas de torneos todavía no están habilitadas.</p></div>
+    </aside>
+   </div>
+  </section>
+  <section class="shell comms-links-section" aria-labelledby="channels-heading">
+   <div class="eyebrow">NUESTROS CANALES</div><h2 id="channels-heading">CONECTADOS <span class="text-orange">CONTIGO.</span></h2>
+   <div class="comms-channel-grid">
+    <article class="comms-channel-card"><div class="comms-channel-symbol">◎</div><span class="comms-channel-status status-live">DISPONIBLE</span><h3>INVITACIONES</h3><p>Comparte nuestra web y atrae nuevos jugadores desde WhatsApp.</p><a href="#invite-heading" class="button button-outline">PREPARAR INVITACIÓN</a></article>
+    <article class="comms-channel-card"><div class="comms-channel-symbol">✉</div><span id="support-badge" class="comms-channel-status">SIN NÚMERO CONFIGURADO</span><h3>SOPORTE WHATSAPP</h3><p id="support-description">Cuando configuremos el número oficial, los jugadores podrán consultar dudas con un mensaje preparado.</p><a id="support-link" class="button button-outline" href="#" aria-disabled="true">PRÓXIMAMENTE</a></article>
+    <article class="comms-channel-card"><div class="comms-channel-symbol">⌘</div><span id="group-badge" class="comms-channel-status">EN PREPARACIÓN</span><h3>GRUPO DE JUGADORES</h3><p>Publicaremos el enlace solo después de crear y moderar un grupo oficial de DROPZONE.</p><a id="group-link" class="button button-outline" href="#" aria-disabled="true">PRÓXIMAMENTE</a></article>
+   </div>
+   <div class="comms-coming"><div><b>PRÓXIMA FASE</b><p>Cuando el sistema de torneos esté activo, conectaremos los avisos de horarios, confirmaciones y cambios con el consentimiento de los participantes y las herramientas oficiales correspondientes.</p></div><a class="button button-outline" href="./index.html#torneos">VER FORMATOS DE TORNEO</a></div>
+  </section>
+ </main>
+ <footer class="footer"><div class="shell footer-bottom" style="margin-top:0"><span>© 2026 DROPZONE ESPORTS · COMPITE. JUEGA. GANA.</span><span>PROYECTO INDEPENDIENTE · SIN AFILIACIÓN CON GARENA O WHATSAPP</span></div></footer>
+</body>
+</html>
