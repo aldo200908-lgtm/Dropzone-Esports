@@ -9,3 +9,6 @@ grant update (nickname, game_uid, is_public) on public.profiles to authenticated
 -- Authentication trigger creates profiles without accepting user-selected roles.
 -- Profile role changes must take place via protected administrator operations only.
 -- No grant to anon is required: public profiles are not exposed here.
+
+-- Privacy-by-default: a nickname appears in public rankings only by explicit opt-in.
+alter table public.profiles alter column is_public set default false;
