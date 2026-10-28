@@ -27,7 +27,7 @@ export async function currentProfile():Promise<Profile|null>{
  if(!db)return null;
  const {data:{user}}=await db.auth.getUser();
  if(!user)return null;
- const {data}=await db.from("profiles").select("id,nickname,game_uid,role,created_at").eq("id",user.id).maybeSingle();
+ const {data}=await db.from("profiles").select("id,nickname,game_uid,role,is_public,created_at").eq("id",user.id).maybeSingle();
  return data as Profile|null;
 }
 export async function registrationsForUser(id:string) {

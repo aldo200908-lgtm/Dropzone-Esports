@@ -30,7 +30,7 @@ export async function signOut(){const db=await serverSupabase();if(db)await db.a
 export async function updateProfile(form:FormData){
  const {db,user}=await requireUser();const nickname=z.string().min(3).max(24).regex(/^[a-zA-Z0-9_-]+$/).safeParse(form.get("nickname"));
  const uid=z.string().max(30).regex(/^[0-9]*$/).safeParse(form.get("game_uid"));if(!nickname.success||!uid.success)fail("/perfil","Nickname o UID inválido");
- const {error}=await db.from("profiles").update({nickname:nickname.data,game_uid:uid.data||null}).eq("id",user.id);
+ const {error}=await db.from("profiles").update({nickname:nickname.data,game_uid:uid.data||null,is_public:form.get("public_profile")==="on"}).eq("id",user.id);
  if(error)fail("/perfil","No se pudo actualizar el perfil. El nickname podría estar ocupado.");
  revalidatePath("/perfil");revalidatePath("/","layout");redirect("/perfil?notice=Perfil+actualizado");
 }
@@ -130,4 +130,12 @@ export async function markNotificationRead(form:FormData){
  const {db,user}=await requireUser();const id=z.uuid().safeParse(form.get("notification_id"));if(!id.success)fail("/notificaciones","ID inválido");
  await db.from("notifications").update({read_at:new Date().toISOString()}).eq("id",id.data).eq("user_id",user.id);
  revalidatePath("/notificaciones");redirect("/notificaciones");
+}
+
+export async function reconcileExpired(){
+ const {db}=await requireAdmin();
+ const {error}=await db.rpc("reconcile_expired_tournaments");
+ if(error)fail("/admin","No se pudieron cerrar los torneos vencidos: "+error.message);
+ revalidatePath("/admin");revalidatePath("/torneos");
+ redirect("/admin?notice=Revisión+de+torneos+vencidos+completada");
 }

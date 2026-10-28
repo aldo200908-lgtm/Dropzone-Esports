@@ -8,6 +8,6 @@ export type Tournament = {
  modality:string; rules:string|null; created_at:string;
  game?: {name:string;slug:string}|null; registered_count?:number;
 };
-export type Profile = { id:string;nickname:string;game_uid:string|null;role:Role;created_at:string };
+export type Profile = { id:string;nickname:string;game_uid:string|null;role:Role;is_public:boolean;created_at:string };
 export type Leader = { nickname:string;points:number;wins:number;kills:number;played:number };
 export type Registration = {id:string;user_id:string;tournament_id:string;status:"reserved"|"confirmed"|"cancelled"|"waitlisted";expires_at:string|null};

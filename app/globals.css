@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 :root{--bg:#0b0b0d;--panel:#17171b;--panel2:#202024;--edge:#34343b;--orange:#ff7a00;--yellow:#ffd000;--text:#f3f3f4;--muted:#a5a5ad}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh;margin:0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:"Montserrat",Arial,Helvetica,sans-serif;min-height:100vh;margin:0}
 ::selection{background:var(--orange);color:#0b0b0d}a{text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}
-.heading{font-family:Impact,"Arial Narrow",Arial,sans-serif;letter-spacing:.008em;font-weight:900;font-stretch:condensed}
+.heading{font-family:"Anton",Impact,"Arial Narrow",Arial,sans-serif;letter-spacing:.008em;font-weight:900;font-stretch:condensed}
 .container-app{width:min(1180px,calc(100% - 36px));margin-inline:auto}
 .hatch{background-image:repeating-linear-gradient(125deg,transparent 0 14px,rgba(255,122,0,.08) 15px 16px)}
 .gridlines{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:46px 46px}

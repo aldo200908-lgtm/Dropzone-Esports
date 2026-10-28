@@ -7,7 +7,7 @@ Next.js 16 (App Router), TypeScript, Tailwind 4, Supabase Auth/Postgres y Vercel
 
 ## Inicio
 1. Instala Node.js 22 o superior y ejecuta `npm install`.
-2. Crea un proyecto Supabase y ejecuta en orden `supabase/migrations/001_init.sql` y `supabase/migrations/002_leaderboard_periods.sql` en el SQL Editor.
+2. Crea un proyecto Supabase y ejecuta en orden `supabase/migrations/001_init.sql` y `supabase/migrations/002_leaderboard_periods.sql` y `supabase/migrations/003_reconciliation.sql` en el SQL Editor.
 3. Copia `.env.example` a `.env.local`, configura la URL y clave pública de Supabase.
 4. Ejecuta `npm run dev`.
 5. Registra una cuenta; para habilitar administración, desde SQL Editor ejecuta:
@@ -44,3 +44,10 @@ Sin configuración de Supabase, la web muestra una **vista previa claramente mar
 - No usar imágenes ni marcas registradas sin autorización. DROPZONE ESPORTS no está afiliado a Garena.
 - Verificar términos de Garena, menores, privacidad y normativa peruana antes de habilitar pagos.
 - No declarar que un premio está asegurado hasta contar con fondos disponibles.
+
+## Cierre de inscripciones y automatización
+- En /admin existe un botón para revisar torneos cuya fecha límite venció.
+- `supabase/migrations/003_reconciliation.sql` define la rutina de conciliación. Torneos con menos del mínimo pasan a "cancelled"; el cambio genera notificaciones.
+- Para automatizarla, programa un GET a `/api/cron/reconcile` desde un proveedor de cron autorizado, incluyendo `Authorization: Bearer <CRON_SECRET>`.
+- Define `CRON_SECRET` y `SUPABASE_SERVICE_ROLE_KEY` solo en variables privadas del servidor (no prefijo NEXT_PUBLIC).
+- Frecuencia sugerida: cada 5 minutos, si el proveedor contratado lo permite. Mientras no haya un programador conectado, el cierre es **manual**.
