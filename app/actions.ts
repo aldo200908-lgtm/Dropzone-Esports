@@ -3,6 +3,7 @@ import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
 import {z} from "zod";
 import {serverSupabase} from "@/lib/supabase/server";
+import {peruLocalToISO} from "@/lib/utils";
 type DB=NonNullable<Awaited<ReturnType<typeof serverSupabase>>>;
 function fail(target:string,message:string):never{redirect(target+"?error="+encodeURIComponent(message));}
 async function requireUser(){const db=await serverSupabase();if(!db)fail("/acceso","Configura Supabase antes de continuar");const {data:{user},error}=await db.auth.getUser();if(error||!user)fail("/acceso","Inicia sesión para continuar");return {db:db as DB,user};}
@@ -53,7 +54,7 @@ export async function createTournament(form:FormData){
  const x=v.data;if(x.min_players>x.max_players||new Date(x.deadline)>=new Date(x.starts_at))fail("/admin","Revisa cupos y plazo: el cierre debe ser anterior al inicio.");
  const {data:g}=await db.from("games").select("id").eq("slug","free-fire").single();if(!g)fail("/admin","Falta instalar la migración SQL");
  const slug="dz-"+Date.now();
- const {error}=await db.from("tournaments").insert({game_id:g.id,title:x.title,slug,description:x.description,starts_at:new Date(x.starts_at).toISOString(),registration_deadline:new Date(x.deadline).toISOString(),min_players:x.min_players,max_players:x.max_players,prize_cents:Math.round(x.prize*100),entry_cents:Math.round(x.entry*100),modality:x.modality,rules:x.rules,status:"draft",created_by:user.id});
+ const {error}=await db.from("tournaments").insert({game_id:g.id,title:x.title,slug,description:x.description,starts_at:peruLocalToISO(x.starts_at),registration_deadline:peruLocalToISO(x.deadline),min_players:x.min_players,max_players:x.max_players,prize_cents:Math.round(x.prize*100),entry_cents:Math.round(x.entry*100),modality:x.modality,rules:x.rules,status:"draft",created_by:user.id});
  if(error)fail("/admin","No fue posible crear el torneo: "+error.message);
  revalidatePath("/admin");redirect("/admin?notice=Torneo+creado+como+borrador");
 }
@@ -71,7 +72,7 @@ export async function saveRoom(form:FormData){
  const id=z.uuid().safeParse(form.get("tournament_id"));const roomId=z.string().trim().min(2).max(100).safeParse(form.get("room_id"));const secret=z.string().trim().min(4).max(150).safeParse(form.get("room_secret"));
  const opens=z.string().min(12).safeParse(form.get("access_opens_at"));
  if(!id.success||!roomId.success||!secret.success||!opens.success)fail("/admin","Datos de sala inválidos");
- const {error}=await db.from("rooms").upsert({tournament_id:id.data,room_id:roomId.data,room_secret:secret.data,access_opens_at:new Date(opens.data).toISOString()},{onConflict:"tournament_id"});
+ const {error}=await db.from("rooms").upsert({tournament_id:id.data,room_id:roomId.data,room_secret:secret.data,access_opens_at:peruLocalToISO(opens.data)},{onConflict:"tournament_id"});
  if(error)fail("/admin","Error guardando sala: "+error.message);
  await db.from("audit_logs").insert({actor_id:user.id,action:"save_room",entity_id:id.data,details:{updated:true}});
  revalidatePath("/admin");revalidatePath("/torneos/"+id.data);redirect("/admin?notice=Sala+guardada");
@@ -98,4 +99,35 @@ export async function resolveDispute(form:FormData){
  if(error)fail("/admin","No se pudo actualizar la reclamación");
  await db.from("audit_logs").insert({actor_id:user.id,action:"resolve_dispute",entity_id:id.data,details:{status:status.data}});
  revalidatePath("/admin");redirect("/admin?notice=Reclamación+actualizada");
+}
+
+export async function requestPasswordReset(form:FormData){
+ const email=emailSchema.safeParse(form.get("email"));if(!email.success)fail("/recuperar","Ingresa un correo válido");
+ const db=await serverSupabase();if(!db)fail("/recuperar","Supabase no está configurado");
+ const origin=process.env.NEXT_PUBLIC_SITE_URL??"http://localhost:3000";
+ await db.auth.resetPasswordForEmail(email.data,{redirectTo:origin+"/auth/callback?next=/actualizar-clave"});
+ redirect("/recuperar?notice="+encodeURIComponent("Si existe esa cuenta, recibirás un correo con instrucciones."));
+}
+export async function changePassword(form:FormData){
+ const {db}=await requireUser();
+ const password=passSchema.safeParse(form.get("password"));if(!password.success)fail("/actualizar-clave","Utiliza una contraseña de al menos 8 caracteres.");
+ const {error}=await db.auth.updateUser({password:password.data});
+ if(error)fail("/actualizar-clave","No se pudo actualizar la contraseña.");
+ redirect("/perfil?notice="+encodeURIComponent("Contraseña actualizada"));
+}
+export async function submitDispute(form:FormData){
+ const {db,user}=await requireUser();
+ const t=z.uuid().safeParse(form.get("tournament_id"));
+ const reason=z.string().min(10).max(2000).safeParse(form.get("reason"));
+ if(!t.success||!reason.success)fail("/torneos","Datos de incidencia incorrectos");
+ const {data:eligible}=await db.from("registrations").select("id").eq("tournament_id",t.data).eq("user_id",user.id).in("status",["confirmed","waitlisted"]).maybeSingle();
+ if(!eligible)fail("/torneos/"+t.data,"Solo participantes inscritos pueden presentar reclamaciones.");
+ const {error}=await db.from("disputes").insert({tournament_id:t.data,user_id:user.id,reason:reason.data});
+ if(error)fail("/torneos/"+t.data,"No pudimos registrar tu reclamación.");
+ revalidatePath("/admin");redirect("/torneos/"+t.data+"?notice="+encodeURIComponent("Reclamación enviada para revisión."));
+}
+export async function markNotificationRead(form:FormData){
+ const {db,user}=await requireUser();const id=z.uuid().safeParse(form.get("notification_id"));if(!id.success)fail("/notificaciones","ID inválido");
+ await db.from("notifications").update({read_at:new Date().toISOString()}).eq("id",id.data).eq("user_id",user.id);
+ revalidatePath("/notificaciones");redirect("/notificaciones");
 }

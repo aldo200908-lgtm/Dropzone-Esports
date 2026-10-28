@@ -7,7 +7,7 @@ Next.js 16 (App Router), TypeScript, Tailwind 4, Supabase Auth/Postgres y Vercel
 
 ## Inicio
 1. Instala Node.js 22 o superior y ejecuta `npm install`.
-2. Crea un proyecto Supabase y ejecuta `supabase/migrations/001_init.sql` en el SQL Editor.
+2. Crea un proyecto Supabase y ejecuta en orden `supabase/migrations/001_init.sql` y `supabase/migrations/002_leaderboard_periods.sql` en el SQL Editor.
 3. Copia `.env.example` a `.env.local`, configura la URL y clave pública de Supabase.
 4. Ejecuta `npm run dev`.
 5. Registra una cuenta; para habilitar administración, desde SQL Editor ejecuta:

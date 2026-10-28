@@ -16,6 +16,7 @@ create table public.profiles (
  updated_at timestamptz not null default now()
 );
 create unique index profiles_nickname_lower_idx on public.profiles(lower(nickname));
+create unique index profiles_uid_unique_idx on public.profiles(game_uid) where game_uid is not null;
 create function public.is_admin() returns boolean language sql stable security definer set search_path='' as $$
  select exists(select 1 from public.profiles p where p.id=(select auth.uid()) and p.role='admin');
 $$;
