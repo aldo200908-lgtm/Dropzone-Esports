@@ -14,6 +14,9 @@ jobs:
           node-version: '22'
       - run: npm install --global npm@11.6.2
       - run: npm install --no-audit --no-fund
+      - run: node --check docs/site.js
+      - run: node --check docs/auth.js
+      - run: node --test tests/static-auth.test.mjs
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run test

@@ -52,6 +52,44 @@ Sin configuración de Supabase, la web muestra una **vista previa claramente mar
 - Define `CRON_SECRET` y `SUPABASE_SERVICE_ROLE_KEY` solo en variables privadas del servidor (no prefijo NEXT_PUBLIC).
 - Frecuencia sugerida: cada 5 minutos, si el proveedor contratado lo permite. Mientras no haya un programador conectado, el cierre es **manual**.
 
+
+## Registro e inicio de sesión SIN Vercel (GitHub Pages + Supabase)
+
+Las páginas `docs/acceso.html` y `docs/perfil.html` funcionan con **Supabase Auth directamente en el navegador**. No requieren un servidor Next.js. Hasta completar esta configuración, muestran que la autenticación aún no está activa (sin fingir registros).
+
+### Activación (una sola vez)
+
+1. Crea un proyecto en [Supabase](https://supabase.com/dashboard), una vez que puedas gestionar legalmente la plataforma.
+2. En el **SQL Editor** ejecuta los scripts de la carpeta `supabase/migrations` en orden: `001_init.sql`, `002_leaderboard_periods.sql`, `003_reconciliation.sql` y `004_static_auth.sql`.
+3. Abre en GitHub `docs/auth-config.js` y rellena:
+   - `url`: la **Project URL** (ejemplo ilustrativo: `https://TU-PROYECTO.supabase.co`)
+   - `publishableKey`: la clave **publishable** `sb_publishable_...` o clave pública **anon** (no la `service_role` ni una clave secreta).
+4. En **Authentication → URL Configuration**:
+   - **Site URL**: `https://aldo200908-lgtm.github.io/Dropzone-Esports/`
+   - **Redirect URLs** (agrega ambas):
+     `https://aldo200908-lgtm.github.io/Dropzone-Esports/perfil.html`
+     `https://aldo200908-lgtm.github.io/Dropzone-Esports/acceso.html?modo=restablecer`
+5. En **Authentication → Providers → Email** habilita autenticación por correo y **confirmación de correo**. Para un servicio público configura un envío SMTP adecuado, límites de envíos y protección contra automatizaciones.
+6. Espera a que se publique la actualización de GitHub Pages. Visita [Acceso](https://aldo200908-lgtm.github.io/Dropzone-Esports/acceso.html) y comprueba con una cuenta de prueba autorizada: registro → correo de confirmación → login → perfil → UID → cerrar sesión → restablecer contraseña.
+
+### Seguridad
+- El frontend nunca debe contener `service_role`, `sb_secret_`, tokens personales ni contraseñas.
+- La `publishableKey` está diseñada para ser pública. Las **políticas RLS** son las que protegen los datos.
+- Los usuarios pueden modificar solo su propio perfil; los roles no se cambian desde el navegador.
+- Los datos privados del perfil no se muestran públicamente por defecto.
+- La recopilación de datos, la edad de los jugadores, los términos de uso y la política de privacidad deben revisarse antes de lanzar el registro al público.
+- La web pública sigue sin admitir inscripciones a torneos, premios garantizados ni cobros.
+
+### Diagnóstico
+Si el botón de registro no funciona, revisa:
+- Que `docs/auth-config.js` contiene la URL y la clave **pública** correctas.
+- Que ejecutaste las cuatro migraciones SQL sin errores.
+- Que las Redirect URLs coinciden exactamente con las páginas de GitHub Pages.
+- Que no bloqueas jsDelivr y el navegador permite JavaScript.
+- Que Supabase Auth no está limitando el envío de correos en la cuota gratuita.
+
+La aplicación Next.js en la raíz del repositorio es otro frontend opcional y **no se ejecuta desde GitHub Pages**. Para este MVP la página estática + Supabase es suficiente.
+
 ## Vista pública sin Vercel (GitHub Pages)
 Se incluye `docs/index.html`, una página de presentación estática, responsive y sin funciones de pago ni inscripción.
 

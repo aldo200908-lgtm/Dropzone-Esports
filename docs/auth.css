@@ -1,0 +1,58 @@
+/* DROPZONE ESPORTS — public account screens */
+.account-shell{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.account-hero{position:relative;overflow:hidden;isolation:isolate;padding:70px 0 90px;background:radial-gradient(ellipse at 14% 50%,#ff7a001a,transparent 48%),#0b0b0b;min-height:calc(100vh - 175px)}
+.account-hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to right,transparent,#000)}
+.account-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:70px;align-items:center}
+.account-eyebrow{font-size:10px;color:#ff9b40;text-transform:uppercase;font-weight:900;letter-spacing:.21em;display:flex;align-items:center;gap:9px}
+.account-eyebrow::before{content:"";width:20px;height:3px;background:#ff7a00;display:inline-block}
+.account-heading{font:clamp(48px,6vw,83px)/.99 Anton,Impact,sans-serif;letter-spacing:.01em;margin:18px 0 23px}
+.account-heading strong{color:#ff7a00;font-weight:400}
+.account-description{font-size:13px;color:#babac1;line-height:1.9;max-width:440px}
+.account-highlights{display:grid;gap:21px;margin-top:43px}
+.account-highlight{display:flex;gap:15px;align-items:start}
+.account-highlight .highlight-icon{width:40px;height:40px;flex-shrink:0;background:#ff7a0015;border:1px solid #ff7a003e;color:#ff7a00;display:grid;place-items:center;border-radius:8px}
+.account-highlight .highlight-icon svg{height:20px;width:20px}
+.account-highlight strong{display:block;font-size:12px;font-weight:900}
+.account-highlight span{display:block;color:#9999a1;font-size:11px;line-height:1.7;margin-top:4px}
+.account-card{border:1px solid #3f3f45;background:linear-gradient(145deg,#212123,#151518 65%);border-radius:16px;padding:34px;box-shadow:0 20px 70px #0006}
+.account-card-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:23px}
+.account-card-head h2{font:32px Anton,Impact,sans-serif}
+.beta-pill{border:1px solid #ff7a0055;color:#ffb471;background:#ff7a0010;border-radius:6px;padding:7px 9px;font-size:9px;font-weight:900;letter-spacing:.11em}
+.account-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:#0e0e10;border:1px solid #34343a;border-radius:8px;gap:4px;margin-bottom:24px}
+.account-tab{font-size:11px;font-weight:900;color:#a7a7b0;background:transparent;border:0;border-radius:6px;min-height:43px;transition:background .2s}
+.account-tab[aria-pressed="true"]{background:#ff7a00;color:#0b0b0b}
+.account-form{display:grid;gap:17px}
+.account-form[hidden],[data-auth-view][hidden],[hidden]{display:none!important}
+.form-label{display:block;font-size:10px;color:#bcbcc3;font-weight:900;letter-spacing:.09em;text-transform:uppercase;margin-bottom:8px}
+.form-field{display:block;width:100%;min-height:47px;background:#0e0e11;border:1px solid #44444b;border-radius:7px;padding:11px 13px;color:#f5f5f5;font-size:13px;outline:0;transition:border-color .2s,box-shadow .2s}
+.form-field:focus{border-color:#ff7a00;box-shadow:0 0 0 3px #ff7a0020}
+.form-field::placeholder{color:#777780}
+.form-field:disabled{opacity:.6;cursor:not-allowed}
+.account-form button[type="submit"]{width:100%;margin-top:5px}
+.account-form button[disabled]{cursor:not-allowed;opacity:.55;transform:none}
+.account-link{display:inline-block;color:#ffa13a;font-size:11px;font-weight:800}
+.account-link:hover{text-decoration:underline}
+.account-small{font-size:11px;line-height:1.75;color:#a0a0a7}
+.account-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.checkbox-row{display:flex;align-items:start;gap:10px;color:#aaaab2;font-size:11px;line-height:1.7}
+.checkbox-row input{accent-color:#ff7a00;width:17px;height:17px;margin:2px 0 0;flex-shrink:0}
+.account-alert{padding:13px 15px;border-radius:7px;font-size:12px;line-height:1.7;background:#35302b;border:1px solid #8e5623;color:#f0c7a6;margin-bottom:21px}
+.account-alert[data-kind="error"]{background:#49191977;border-color:#9e3c3c;color:#ffc1bf}
+.account-alert[data-kind="success"]{background:#12392360;border-color:#326f44;color:#afe6bc}
+.account-alert[data-kind="info"]{background:#34302a;border-color:#8e5623;color:#f0c7a6}
+.account-muted-divider{border-top:1px solid #38383e;margin-top:23px;padding-top:22px;text-align:center}
+.account-profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:25px;align-items:start;margin-top:45px}
+.profile-summary{border:1px solid #444448;background:#1a1a1d;border-radius:14px;padding:28px}
+.profile-avatar{width:75px;height:75px;display:grid;place-items:center;font:32px Anton,Impact,sans-serif;color:#101010;border-radius:12px;background:linear-gradient(135deg,#ffb040,#ff7a00)}
+.profile-summary h2{font:35px Anton,Impact,sans-serif;margin-top:18px;overflow-wrap:anywhere}
+.profile-summary .email{font-size:12px;color:#a9a9b0;margin-top:8px;overflow-wrap:anywhere}
+.profile-tag{display:inline-block;margin-top:18px;background:#ff7a001a;color:#ffae61;border:1px solid #ff7a0050;padding:7px 10px;font-size:10px;letter-spacing:.09em;font-weight:900;border-radius:5px}
+.profile-summary .profile-disclaimer{font-size:11px;color:#96969d;line-height:1.8;border-top:1px solid #3c3c42;padding-top:21px;margin-top:26px}
+.profile-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.profile-actions .button{min-width:135px}
+.account-setup{background:#2c240f;border:1px solid #805c24;padding:13px 15px;color:#f9c37a;border-radius:8px;font-size:11px;line-height:1.7;margin-top:12px}
+.account-container-small{max-width:650px;margin-inline:auto}
+.nav-account{white-space:nowrap}
+@media(max-width:980px){.account-grid{gap:32px}.account-card{padding:27px}.account-heading{font-size:clamp(49px,6vw,68px)}}
+@media(max-width:700px){.account-hero{padding:54px 0 70px}.account-grid,.account-profile{grid-template-columns:1fr}.account-heading{font-size:clamp(48px,12vw,71px)}.account-highlights{margin-top:25px;grid-template-columns:repeat(2,1fr);gap:16px}.account-highlight{gap:9px}.account-highlight .highlight-icon{width:34px;height:34px}.account-card{padding:22px}.nav-account{display:inline-flex!important;padding:9px 12px!important;min-height:40px;font-size:10px!important}.account-profile{margin-top:28px}.profile-summary{padding:22px}.account-hero::before{opacity:.5}.account-card-head h2{font-size:28px}}
+@media(max-width:420px){.account-highlights{grid-template-columns:1fr}.account-hero{padding-top:43px}.account-card{padding:19px}.account-heading{font-size:47px}}

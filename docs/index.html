@@ -16,6 +16,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="./styles.css">
 <script src="./site.js" defer></script>
+<script src="./auth-config.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="./auth.js" defer></script>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -39,7 +42,7 @@
   <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-open="false">
    <a href="#torneos">TORNEOS</a><a href="#como-funciona">CÓMO FUNCIONA</a><a href="#rankings">RANKINGS</a><a href="#comunidad">COMUNIDAD</a>
   </nav>
-  <div class="nav-actions"><a class="button button-primary" href="#torneos">VER TORNEOS <svg aria-hidden="true"><use href="#arrow"/></svg></a><button class="menu-button" type="button" id="menu-toggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><svg width="22" height="22" aria-hidden="true"><use href="#menu"/></svg></button></div>
+  <div class="nav-actions"><a id="account-nav" class="button button-outline account-link-home" href="./acceso.html">INGRESAR</a><a class="button button-primary" href="#torneos">VER TORNEOS <svg aria-hidden="true"><use href="#arrow"/></svg></a><button class="menu-button" type="button" id="menu-toggle" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><svg width="22" height="22" aria-hidden="true"><use href="#menu"/></svg></button></div>
  </div>
 </header>
 <main>
@@ -50,7 +53,7 @@
    <h1>QUE HABLE<br><span class="text-orange">TU NIVEL.</span><br><span class="outlined">NO TU SUERTE.</span></h1>
    <p class="hero-copy">Tu partida merece algo más que una victoria. Estamos creando una plataforma de torneos con comunidad, rankings y competiciones organizadas para jugadores que quieren destacar.</p>
    <div class="hero-buttons"><a class="button button-primary" href="#torneos">EXPLORAR TORNEOS <svg aria-hidden="true"><use href="#arrow"/></svg></a><a class="button button-outline" href="#como-funciona">DESCUBRIR LA PLATAFORMA <svg aria-hidden="true"><use href="#arrow-r"/></svg></a></div>
-   <p class="hero-caveat"><svg aria-hidden="true"><use href="#shield"/></svg> Vista previa pública · Sin registros, inscripciones ni pagos activos</p>
+   <p class="hero-caveat"><svg aria-hidden="true"><use href="#shield"/></svg> Vista previa pública · Inscripciones a torneos y pagos desactivados</p>
   </div>
   <div class="hero-art">
    <img src="./arena-shield.svg" alt="Escudo original de DROPZONE ESPORTS con estética competitiva en naranja y negro" width="600" height="600" fetchpriority="high">
@@ -93,7 +96,7 @@
    <div class="card-content"><div class="card-overline">FREE FIRE / EVENTO ESPECIAL</div><h4>CHAMPIONS NIGHT</h4><div class="card-data"><span class="label">Modalidad</span><strong>Final de temporada</strong></div><div class="card-data"><span class="label">Clasificados</span><strong>Por definir</strong></div><div class="card-data"><span class="label">Inicio</span><strong>Por anunciar</strong></div><div class="card-prize"><div><span>Premio anunciado</span><strong>POR DEFINIR</strong></div><svg width="26" height="26" aria-hidden="true" style="color:#ffd000"><use href="#trophy"/></svg></div><a class="button button-outline card-action" href="#como-funciona">CONOCER EL FORMATO <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
   </article>
  </div>
- <div class="panel-note"><svg aria-hidden="true"><use href="#info"/></svg><span>DROPZONE ESPORTS está en desarrollo. Los formatos y cupos son propuestas sujetas a validación. No hay inscripciones ni pagos habilitados; los futuros torneos mostrarán fechas, reglas y premios reales antes de abrir reservas. *Capacidad dependiente del modo de juego.</span></div>
+ <div class="panel-note"><svg aria-hidden="true"><use href="#info"/></svg><span>DROPZONE ESPORTS está en desarrollo. Los formatos y cupos son propuestas sujetas a validación. No hay inscripciones a torneos ni pagos habilitados; los futuros torneos mostrarán fechas, reglas y premios reales antes de abrir reservas. *Capacidad dependiente del modo de juego.</span></div>
 </section>
 <section class="section how-band" id="como-funciona" aria-labelledby="how-title">
  <div class="shell steps-grid">
@@ -143,6 +146,6 @@
  <div class="footer-links"><div><h3>EXPLORA</h3><a href="#torneos">Torneos</a><a href="#como-funciona">Cómo funciona</a><a href="#rankings">Rankings</a></div><div><h3>INFORMACIÓN</h3><a href="#seguridad">Reglas y confianza</a><a href="#comunidad">Comunidad</a><a href="https://github.com/aldo200908-lgtm/Dropzone-Esports" target="_blank" rel="noopener noreferrer">Repositorio</a></div></div></div>
  <div class="shell footer-bottom"><span>© 2026 DROPZONE ESPORTS. TODOS LOS DERECHOS RESERVADOS.</span><span>PROYECTO INDEPENDIENTE · SIN AFILIACIÓN CON GARENA · VERSIÓN DE PRESENTACIÓN</span></div>
 </footer>
-<nav class="mobile-dock" aria-label="Accesos rápidos móviles"><a href="#torneos"><svg aria-hidden="true"><use href="#trophy"/></svg>TORNEOS</a><a href="#rankings"><svg aria-hidden="true"><use href="#target"/></svg>RANKING</a><a href="#comunidad"><svg aria-hidden="true"><use href="#users"/></svg>COMUNIDAD</a></nav>
+<nav class="mobile-dock" aria-label="Accesos rápidos móviles"><a href="#torneos"><svg aria-hidden="true"><use href="#trophy"/></svg>TORNEOS</a><a href="#rankings"><svg aria-hidden="true"><use href="#target"/></svg>RANKING</a><a href="#comunidad"><svg aria-hidden="true"><use href="#users"/></svg>COMUNIDAD</a><a href="./acceso.html"><svg aria-hidden="true"><use href="#shield"/></svg>CUENTA</a></nav>
 </body>
 </html>

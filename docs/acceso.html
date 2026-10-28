@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#0b0b0b">
+ <meta name="description" content="Crea tu cuenta en DROPZONE ESPORTS o inicia sesión para preparar tu perfil competitivo.">
+ <meta name="referrer" content="strict-origin-when-cross-origin">
+ <title>Acceso | DROPZONE ESPORTS</title>
+ <link rel="icon" type="image/svg+xml" href="./arena-shield.svg">
+ <link rel="stylesheet" href="./styles.css">
+ <link rel="stylesheet" href="./auth.css">
+ <script src="./auth-config.js" defer></script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+ <script src="./auth.js" defer></script>
+</head>
+<body data-auth-page="access">
+<div class="topbar"><div class="shell"><span><span class="live-dot"></span> DROPZONE ESPORTS · ACCESO</span><span class="secondary-note">PROTEGIDO CON SUPABASE AUTH</span></div></div>
+<header class="site-header"><div class="shell nav-wrap">
+ <a href="./index.html" class="brand" aria-label="Volver al inicio"><img class="brand-mark" src="./arena-shield.svg" alt="" width="45" height="45"><span class="brand-copy"><strong>DROPZONE</strong><span>ESPORTS</span></span></a>
+ <div class="nav-actions"><a href="./index.html" class="button button-outline nav-account">← VOLVER AL INICIO</a></div>
+</div></header>
+<main class="account-hero">
+ <div class="account-shell account-grid">
+  <section aria-labelledby="auth-title">
+   <div class="account-eyebrow">EL PRIMER PASO DE TU CARRERA</div>
+   <h1 class="account-heading" id="auth-title">ENTRA A <strong>LA ARENA.</strong></h1>
+   <p class="account-description">Una identidad. Un ranking. Una comunidad. Crea tu cuenta para estar preparado cuando DROPZONE ESPORTS abra sus primeras competiciones.</p>
+   <div class="account-highlights">
+    <div class="account-highlight"><span class="highlight-icon" aria-hidden="true">⚔</span><div><strong>PERFIL COMPETITIVO</strong><span>Nickname y UID vinculados a tu cuenta.</span></div></div>
+    <div class="account-highlight"><span class="highlight-icon" aria-hidden="true">🏆</span><div><strong>RANKINGS OFICIALES</strong><span>Historial y estadísticas cuando empiecen los torneos.</span></div></div>
+    <div class="account-highlight"><span class="highlight-icon" aria-hidden="true">🛡</span><div><strong>CUENTAS PROTEGIDAS</strong><span>Autenticación por correo. No pedimos claves de Free Fire.</span></div></div>
+   </div>
+  </section>
+  <section class="account-card" aria-label="Autenticación">
+   <div class="account-card-head"><h2>ACCESO DE JUGADOR</h2><span class="beta-pill">BETA</span></div>
+   <div class="account-tabs" role="group" aria-label="Opciones de cuenta">
+    <button type="button" class="account-tab" data-select-view="login" aria-pressed="true">INICIAR SESIÓN</button>
+    <button type="button" class="account-tab" data-select-view="register" aria-pressed="false">REGISTRARME</button>
+   </div>
+   <div id="not-configured" class="account-setup" hidden>El registro aún no está activo. Falta configurar los datos públicos de Supabase y ejecutar las migraciones de la base de datos.</div>
+   <div id="auth-message" class="account-alert" role="status" aria-live="polite" hidden></div>
+   <form id="login-form" class="account-form" data-auth-view="login" data-requires-auth>
+    <div><label class="form-label" for="login-email">CORREO ELECTRÓNICO</label><input class="form-field" type="email" id="login-email" name="email" placeholder="tunombre@correo.com" autocomplete="email" maxlength="180" required></div>
+    <div><label class="form-label" for="login-password">CONTRASEÑA</label><input class="form-field" type="password" id="login-password" name="password" placeholder="Tu contraseña" autocomplete="current-password" minlength="8" maxlength="128" required></div>
+    <div class="account-row"><span class="account-small">Tus credenciales se validan con Supabase.</span><button class="account-link" type="button" data-select-view="forgot">¿Olvidaste tu clave?</button></div>
+    <button type="submit" class="button button-primary">ENTRAR A MI PERFIL →</button>
+    <p class="account-small">¿Primera vez aquí? Usa la pestaña <strong>REGISTRARME</strong>.</p>
+   </form>
+   <form id="register-form" class="account-form" data-auth-view="register" data-requires-auth hidden>
+    <div><label class="form-label" for="register-nickname">NICKNAME COMPETITIVO</label><input class="form-field" type="text" id="register-nickname" name="nickname" placeholder="Ejemplo: Fenix_99" autocomplete="nickname" minlength="3" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required></div>
+    <div><label class="form-label" for="register-email">CORREO ELECTRÓNICO</label><input class="form-field" type="email" id="register-email" name="email" placeholder="tunombre@correo.com" autocomplete="email" maxlength="180" required></div>
+    <div><label class="form-label" for="register-password">CONTRASEÑA</label><input class="form-field" type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" maxlength="128" required></div>
+    <div><label class="form-label" for="register-confirm">CONFIRMAR CONTRASEÑA</label><input class="form-field" type="password" id="register-confirm" name="confirm_password" placeholder="Repite tu contraseña" autocomplete="new-password" minlength="8" maxlength="128" required></div>
+    <label class="checkbox-row"><input type="checkbox" id="accept-rules" required> <span>Acepto las condiciones de esta beta, que actualmente no admite inscripciones pagadas. Usaré una cuenta de acuerdo con los requisitos de edad aplicables.</span></label>
+    <button type="submit" class="button button-primary">CREAR MI CUENTA →</button>
+    <p class="account-small">Según la configuración de Supabase, tendrás que confirmar tu correo antes de entrar.</p>
+   </form>
+   <form id="forgot-form" class="account-form" data-auth-view="forgot" data-requires-auth hidden>
+    <p class="account-small">Escribe tu correo. Si está registrado, recibirás un enlace para restablecer la contraseña.</p>
+    <div><label class="form-label" for="forgot-email">CORREO ELECTRÓNICO</label><input class="form-field" type="email" id="forgot-email" name="email" placeholder="tunombre@correo.com" maxlength="180" required></div>
+    <button type="submit" class="button button-primary">ENVIAR ENLACE →</button><button type="button" class="account-link" data-select-view="login">← Volver a iniciar sesión</button>
+   </form>
+   <form id="reset-form" class="account-form" data-auth-view="reset" data-requires-auth hidden>
+    <p class="account-small">Para cambiar la contraseña, entra desde el enlace enviado a tu correo.</p>
+    <div><label class="form-label" for="reset-password">NUEVA CONTRASEÑA</label><input class="form-field" type="password" id="reset-password" name="password" placeholder="Al menos 8 caracteres" minlength="8" maxlength="128" autocomplete="new-password" required></div>
+    <div><label class="form-label" for="reset-confirm">CONFIRMAR CONTRASEÑA</label><input class="form-field" type="password" id="reset-confirm" name="confirm_password" placeholder="Confirma la contraseña" minlength="8" maxlength="128" autocomplete="new-password" required></div>
+    <button type="submit" class="button button-primary">GUARDAR CONTRASEÑA →</button><button type="button" class="account-link" data-select-view="forgot">Solicitar otro enlace</button>
+   </form>
+   <div class="account-muted-divider"><span class="account-small">DROPZONE ESPORTS es independiente de Garena. No pedimos tus credenciales del videojuego.</span></div>
+  </section>
+ </div>
+</main>
+<footer class="footer"><div class="shell footer-bottom" style="margin-top:0"><span>© 2026 DROPZONE ESPORTS · COMPITE. JUEGA. GANA.</span><span>CUENTAS EN BETA · SIN PAGOS REALES</span></div></footer>
+</body>
+</html>
