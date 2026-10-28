@@ -39,10 +39,11 @@ test("Auth code contains necessary Supabase operations and fails closed without 
 
 test("Public auth config includes no privileged credentials", () => {
   const config = file("docs/auth-config.js");
-  assert.match(config, /url:\s*""/);
-  assert.match(config, /publishableKey:\s*""/);
-  assert.doesNotMatch(config, /sb_secret_[A-Za-z0-9]{16,}/);
-  assert.doesNotMatch(config, /eyJ[A-Za-z0-9_-]{100,}/);
+  assert.match(config, /url:\s*"https:\/\/[a-z0-9-]+\.supabase\.co"/);
+  // Supabase publishable/anon keys are designed for browser use; secrets are not.
+  assert.match(config, /publishableKey:\s*"[^"]*"/);
+  assert.doesNotMatch(config, /sb_secret_[A-Za-z0-9_-]{16,}/);
+  assert.doesNotMatch(config, /publishableKey:\s*"[^"]*service_role/i);
 });
 
 test("Static auth SQL grants profile access with RLS from initial migration", () => {
